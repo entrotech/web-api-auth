@@ -25,6 +25,12 @@ namespace WebApiAuth
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+
+            //This is what transforms all the Json into camelcase for us
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
         }
     }
 }
